@@ -166,6 +166,7 @@ services:
     depends_on:
       # - api-gateway
       - keycloak
+      - minio
 
 volumes:
   product-db-data:
