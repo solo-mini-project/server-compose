@@ -160,7 +160,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./certs:/etc/ssl/certs:ro
+      - /home/kl1623299/certs:/etc/ssl/certs:ro
     networks:
       - my-network
     depends_on:
