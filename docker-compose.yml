@@ -1,7 +1,24 @@
+networks:
+  my-network:
+    driver: bridge
+
 services:
   discovery-service:
     image: ghcr.io/leang302/discovery-service:latest
     container_name: discovery-service
     ports:
       - "8761:8761"
+    networks:
+      - my-network
     restart: unless-stopped
+
+  config-server:
+    image: ghcr.io/leang302/config-server:latest
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - my-network
+    restart: unless-stopped
+    depends_on:
+      - discovery-service
