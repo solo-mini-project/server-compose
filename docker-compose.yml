@@ -22,8 +22,7 @@ services:
     restart: unless-stopped
     depends_on:
       - discovery-service
-
-  # Product DB
+      
   product-db:
     image: postgres:15
     container_name: product-db
@@ -39,7 +38,6 @@ services:
       - my-network
     restart: unless-stopped
 
-  # User DB
   user-db:
     image: postgres:15
     container_name: user-db
@@ -55,7 +53,6 @@ services:
       - my-network
     restart: unless-stopped
 
-  # Category DB
   category-db:
     image: postgres:15
     container_name: category-db
@@ -70,8 +67,7 @@ services:
     networks:
       - my-network
     restart: unless-stopped
-
-  # Keycloak
+    
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     container_name: keycloak
@@ -86,13 +82,71 @@ services:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin123
       KC_HTTP_ENABLED: true
-    ports:
-      - "8080:8080"
-    depends_on:
-      - user-db
     networks:
       - my-network
     restart: unless-stopped
+    depends_on:
+      - user-db
+      
+  auth-service:
+    image: ghcr.io/leang302/auth-service:latest
+    container_name: auth-service
+    networks:
+      - my-network
+    restart: unless-stopped
+    depends_on:
+      - discovery-service
+      - config-server
+      - user-db
+      - keycloak
+
+  product-service:
+    image: ghcr.io/leang302/product-service:latest
+    container_name: product-service
+    networks:
+      - my-network
+    restart: unless-stopped
+    depends_on:
+      - discovery-service
+      - config-server
+      - product-db
+
+  category-service:
+    image: ghcr.io/leang302/category-service:latest
+    container_name: category-service
+    networks:
+      - my-network
+    restart: unless-stopped
+    depends_on:
+      - discovery-service
+      - config-server
+      - category-db
+
+  api-gateway:
+    image: ghcr.io/leang302/api-gateway:latest
+    container_name: api-gateway
+    networks:
+      - my-network
+    restart: unless-stopped
+    depends_on:
+      - discovery-service
+      - config-server
+      - keycloak
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./certs:/etc/ssl/certs:ro
+    networks:
+      - my-network
+    depends_on:
+      - api-gateway
+      - keycloak
 
 volumes:
   product-db-data:
