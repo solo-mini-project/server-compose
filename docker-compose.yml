@@ -168,3 +168,4 @@ volumes:
   product-db-data:
   user-db-data:
   category-db-data:
+  minio-data:
