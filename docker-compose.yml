@@ -81,7 +81,10 @@ services:
       KC_DB_PASSWORD: 123
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin123
-      KC_HTTP_ENABLED: true
+      KC_HTTP_ENABLED: false       # disable HTTP
+      KC_HOSTNAME_STRICT: true
+      KC_HOSTNAME: 34.126.135.232 # your public IP or domain
+      KC_PROXY: edge               # tell KC it's behind reverse proxy
     networks:
       - my-network
     restart: unless-stopped
