@@ -90,7 +90,7 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin123
       KC_HTTP_ENABLED: true
       KC_HOSTNAME_STRICT: false
-      KC_HOSTNAME: 34.126.135.232
+      KC_HOSTNAME: auth.kimleang.space
       KC_PROXY: edge
       # Add these for proper reverse proxy setup
       KC_HTTP_RELATIVE_PATH: /auth
