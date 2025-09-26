@@ -157,6 +157,7 @@ services:
       MINIO_ROOT_PASSWORD: minioadmin
       MINIO_BROWSER: "on"
       MINIO_DOMAIN: "auth.kimleang.space"
+      MINIO_BROWSER_REDIRECT_URL: "https://auth.kimleang.space/minio/"
     ports:
       - "9000:9000"
       - "9001:9001"
