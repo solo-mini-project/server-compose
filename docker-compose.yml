@@ -150,22 +150,22 @@ services:
   #     - keycloak
 
   minio:
-  image: minio/minio:latest
-  container_name: minio
-  environment:
-    MINIO_ROOT_USER: minioadmin
-    MINIO_ROOT_PASSWORD: minioadmin
-    MINIO_BROWSER: "on"
-    MINIO_DOMAIN: "auth.kimleang.space"
-  ports:
-    - "9000:9000"
-    - "9001:9001"
-  command: server /data --console-address ":9001"
-  volumes:
-    - minio-data:/data
-  networks:
-    - my-network
-  restart: unless-stopped
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+      MINIO_BROWSER: "on"
+      MINIO_DOMAIN: "auth.kimleang.space"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - my-network
+    restart: unless-stopped
 
     
   # nginx:
