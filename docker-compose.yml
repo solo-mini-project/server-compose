@@ -151,9 +151,6 @@ services:
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
-      # Updated to match nginx proxy paths
-      MINIO_SERVER_URL: https://34.126.135.232/minio-api
-      MINIO_BROWSER_REDIRECT_URL: https://34.126.135.232/minio
     ports:
       - "9000:9000"   # API port
       - "9001:9001"   # Console UI port
