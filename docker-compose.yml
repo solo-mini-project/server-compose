@@ -156,6 +156,7 @@ services:
     MINIO_ROOT_USER: minioadmin
     MINIO_ROOT_PASSWORD: minioadmin
     MINIO_BROWSER: "on"
+    MINIO_DOMAIN: "auth.kimleang.space"
   ports:
     - "9000:9000"
     - "9001:9001"
