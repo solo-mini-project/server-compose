@@ -58,7 +58,6 @@ services:
       timeout: 5s
       retries: 5
 
-
   category-db:
     image: postgres:15
     container_name: category-db
@@ -91,6 +90,9 @@ services:
       KC_HOSTNAME_STRICT: false
       KC_HOSTNAME: 34.126.135.232
       KC_PROXY: edge
+      # Add these for proper reverse proxy setup
+      KC_HTTP_RELATIVE_PATH: /auth
+      KC_PROXY_HEADERS: xforwarded
     networks:
       - my-network
     restart: unless-stopped
@@ -149,7 +151,9 @@ services:
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
-      MINIO_SERVER_URL: https://34.126.135.232/minio
+      # Updated to match nginx proxy paths
+      MINIO_SERVER_URL: https://34.126.135.232/minio-api
+      MINIO_BROWSER_REDIRECT_URL: https://34.126.135.232/minio
     ports:
       - "9000:9000"   # API port
       - "9001:9001"   # Console UI port
@@ -172,7 +176,6 @@ services:
     networks:
       - my-network
     depends_on:
-      # - api-gateway
       - keycloak
       - minio
 
