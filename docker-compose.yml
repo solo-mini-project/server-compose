@@ -154,6 +154,7 @@ services:
       # Critical: Configure MinIO for reverse proxy
       MINIO_SERVER_URL: https://34.126.135.232/minio-api
       MINIO_BROWSER_REDIRECT_URL: https://34.126.135.232/minio
+      MINIO_CONSOLE_SUBPATH: /minio
     ports:
       - "9000:9000"   # API port
       - "9001:9001"   # Console UI port
