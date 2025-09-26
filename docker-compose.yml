@@ -159,6 +159,7 @@ services:
       MINIO_BROWSER_REDIRECT_URL: "https://auth.kimleang.space/minio/"
       MINIO_SERVER_URL: "https://auth.kimleang.space/minio-api/"
       MINIO_CONSOLE_SUBPATH: "/minio"
+      MINIO_API_ENDPOINT: "https://auth.kimleang.space/minio-api/"
     ports:
       - "9000:9000"
       - "9001:9001"
