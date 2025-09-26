@@ -52,6 +52,12 @@ services:
     networks:
       - my-network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 
   category-db:
     image: postgres:15
@@ -81,15 +87,16 @@ services:
       KC_DB_PASSWORD: 123
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin123
-      KC_HTTP_ENABLED: true       # disable HTTP
+      KC_HTTP_ENABLED: true
       KC_HOSTNAME_STRICT: false
-      KC_HOSTNAME: 34.126.135.232 # your public IP or domain
-      KC_PROXY: edge               # tell KC it's behind reverse proxy
+      KC_HOSTNAME: 34.126.135.232
+      KC_PROXY: edge
     networks:
       - my-network
     restart: unless-stopped
     depends_on:
-      - user-db
+      user-db:
+        condition: service_healthy
       
   # auth-service:
   #   image: ghcr.io/leang302/auth-service:latest
