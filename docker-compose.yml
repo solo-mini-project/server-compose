@@ -153,7 +153,8 @@ services:
       MINIO_ROOT_PASSWORD: minioadmin
       MINIO_ADDRESS: ":9000"
       MINIO_CONSOLE_ADDRESS: ":9001"
-      MINIO_CONSOLE_SUBPATH: "/minio"
+      MINIO_BROWSER_REDIRECT_URL: "https://34.126.135.232/minio"
+      MINIO_SERVER_URL: "https://34.126.135.232"
     ports:
       - "9000:9000"   # Keep for direct API access
       - "9001:9001"   # Keep for direct console access  
