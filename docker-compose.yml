@@ -100,17 +100,17 @@ services:
       user-db:
         condition: service_healthy
       
-  # auth-service:
-  #   image: ghcr.io/leang302/auth-service:latest
-  #   container_name: auth-service
-  #   networks:
-  #     - my-network
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - discovery-service
-  #     - config-server
-  #     - user-db
-  #     - keycloak
+  auth-service:
+    image: ghcr.io/leang302/auth-service:latest
+    container_name: auth-service
+    networks:
+      - my-network
+    restart: unless-stopped
+    depends_on:
+      - discovery-service
+      - config-server
+      - user-db
+      - keycloak
 
   # product-service:
   #   image: ghcr.io/leang302/product-service:latest
