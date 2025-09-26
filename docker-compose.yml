@@ -158,6 +158,7 @@ services:
       MINIO_BROWSER: "on"
       MINIO_DOMAIN: "auth.kimleang.space"
       MINIO_BROWSER_REDIRECT_URL: "https://auth.kimleang.space/minio/"
+      MINIO_SERVER_URL: "https://auth.kimleang.space/minio-api"
     ports:
       - "9000:9000"
       - "9001:9001"
