@@ -174,20 +174,20 @@ services:
       - my-network
     restart: unless-stopped
     
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - /etc/letsencrypt/live/auth.kimleang.space:/etc/letsencrypt/live/auth.kimleang.space:ro
-    networks:
-      - my-network
-    depends_on:
-      - keycloak
-      - minio
+  # nginx:
+  #   image: nginx:latest
+  #   container_name: nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx/conf.d:/etc/nginx/conf.d:ro
+  #     - /etc/letsencrypt/live/auth.kimleang.space:/etc/letsencrypt/live/auth.kimleang.space:ro
+  #   networks:
+  #     - my-network
+  #   depends_on:
+  #     - keycloak
+  #     - minio
 
 volumes:
   product-db-data:
