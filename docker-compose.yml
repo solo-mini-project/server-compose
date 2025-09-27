@@ -154,7 +154,7 @@ services:
     container_name: minio
     environment:
       MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadmin
+      MINIO_ROOT_PASSWORD: @Password123!
       MINIO_BROWSER: "on"
       MINIO_BROWSER_REDIRECT_URL: "https://auth.kimleang.space/minio/"
       MINIO_SERVER_URL: "https://auth.kimleang.space/minio-api/"
