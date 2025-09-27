@@ -138,16 +138,18 @@ services:
   #     - config-server
   #     - category-db
 
-  # api-gateway:
-  #   image: ghcr.io/leang302/api-gateway:latest
-  #   container_name: api-gateway
-  #   networks:
-  #     - my-network
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - discovery-service
-  #     - config-server
-  #     - keycloak
+  api-gateway:
+    image: ghcr.io/leang302/api-gateway:latest
+    container_name: api-gateway
+    networks:
+      - my-network
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    depends_on:
+      - discovery-service
+      - config-server
+      - keycloak
 
   minio:
     image: minio/minio:latest
